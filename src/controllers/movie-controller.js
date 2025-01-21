@@ -6,12 +6,20 @@ movieController.get('/create', (req, res) =>
 {
     res.render('create');
 });
+
+movieController.post('/create', (req, res) => {
+    const newMovie = req.body;
+    console.log(newMovie);
+        
+    res.end();
+})
+
 movieController.get('/:movieId/details', (req, res) =>
     {
         const movieId = req.params.movieId;
-
         const movie = movieService.findMovie(movieId);
-        res.render('details');
+        
+        res.render('details', {movie});
     });
 
 export default movieController;
