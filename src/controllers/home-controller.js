@@ -5,6 +5,10 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     const movies = movieService.getAll();
+
+    // convert documents to plain objects
+    // const plainObjects = movies.map(m => m.toObject());
+
     res.render('home', {movies})
 });
 
