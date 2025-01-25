@@ -3,8 +3,8 @@ import movieService from '../services/movie-service.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    const movies = movieService.getAll();
+router.get('/', async (req, res) => {
+    const movies = await movieService.getAll();
 
     // convert documents to plain objects
     // const plainObjects = movies.map(m => m.toObject());

@@ -1,21 +1,19 @@
-// import movies from "../movies.js";
-import { v4 as uuid } from "uuid";
 import Movie from "../models/Movie.js";
 
 export default {
   getAll(searchQueries = {}){
-    // let result = await Movie.find({});
-    // if (searchQueries.search) {
-    //   result = result.filter(movie => movie.title.toLowerCase().includes(searchQueries.search.toLowerCase()))
-    // }
-    // if (searchQueries.genre) {
-    //   result = result.filter(movie => movie.genre === searchQueries.genre)
-    // }
-    // if (searchQueries.year) {
-    //   result = result.filter(movie => movie.year == searchQueries.year)
-    // }
+     let query = Movie.find({});
+    if (searchQueries.search) {
+      query = query.where({title: searchQueries.search})
+    }
+    if (searchQueries.genre) {
+      query = query.where({genre: searchQueries.genre})
+    }
+    if (searchQueries.year) {
+      query = query.where({year: searchQueries.year})
+    }
 
-    return Movie.find({});;
+    return query;
   },
   getOne(movieId) {
     const movie = Movie.findById(movieId);
@@ -23,12 +21,10 @@ export default {
     return movie;
   },
   create(movieData){
-      const newId = uuid();
-
-      movies.push({
-        id: newId,
-        ...movieData,
+    const newMovie = Movie.create({
+      ...movieData,
         rating: Number(movieData.rating)
-      })
+    })
+    return newMovie;
   }
 };
