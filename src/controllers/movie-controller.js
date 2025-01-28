@@ -18,7 +18,7 @@ movieController.post('/create', async(req, res) => {
 movieController.get('/:movieId/details', async (req, res) =>
     {
         const movieId = req.params.movieId;
-        const movie = await movieService.getOne(movieId);
+        const movie = await movieService.getOneWithCasts(movieId);
         
         res.render('movies/details', {movie});
     });
@@ -41,7 +41,7 @@ movieController.get('/:movieId/attach-cast', async (req, res) =>
 movieController.post('/:movieId/attach-cast', async (req, res) => {
         const castId = req.body.cast;
         const movieId = req.params.movieId;
-
+        
         await movieService.attachCast(movieId, castId);
         res.redirect(`/movies/${movieId}/details`)
 });
