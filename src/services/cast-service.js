@@ -2,7 +2,7 @@ import Cast from "../models/Cast.js"
 
 export default {
     getAll(filter = {}){
-        const query = Cast.find({});
+        let query = Cast.find({});
 
         if (filter.exclude) {
             query = query.find({_id: {$nin: filter.exclude}})
