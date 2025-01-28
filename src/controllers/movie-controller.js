@@ -28,4 +28,9 @@ movieController.get('/search', async (req, res) => {
     res.render('search', { movies, searchQueries });
 })
 
+movieController.get('/:movieId/attach-cast', (req, res) =>
+{
+    res.render('movies/cast-attach');
+});
+
 export default movieController;
