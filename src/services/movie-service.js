@@ -23,10 +23,11 @@ export default {
   {
       return this.getOne(movieId).populate('casts');   
   },
-  create(movieData){
+  create(movieData, creatorId){
     const newMovie = Movie.create({
       ...movieData,
-        rating: Number(movieData.rating)
+        rating: Number(movieData.rating),
+        creator: creatorId
     })
     return newMovie;
   },
