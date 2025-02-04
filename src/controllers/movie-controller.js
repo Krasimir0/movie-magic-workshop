@@ -20,8 +20,9 @@ movieController.get('/:movieId/details', async (req, res) =>
     {
         const movieId = req.params.movieId;
         const movie = await movieService.getOneWithCasts(movieId);
+        const isCreator = movie.creator && movie.creator.toString() === req.user.id;
         
-        res.render('movies/details', {movie});
+        res.render('movies/details', {movie, isCreator});
     });
 
 movieController.get('/search', async (req, res) => {
