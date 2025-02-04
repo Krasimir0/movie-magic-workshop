@@ -35,5 +35,8 @@ export default {
       const movie = await Movie.findById(movieId);
       movie.casts.push(castId);
       await movie.save();
+  },
+  delete(movieId) {
+      return Movie.findByIdAndDelete(movieId);
   }
 };
