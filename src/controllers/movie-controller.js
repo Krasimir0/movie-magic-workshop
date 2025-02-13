@@ -55,7 +55,6 @@ function getCategoriesViewData(category) {
 movieController.get("/:movieId/edit", async(req, res) => {
     const movieId = req.params.movieId;
     const movie = await movieService.getOne(movieId);
-    console.log(movie);
     
     const categories = getCategoriesViewData(movie.category);
     res.render('movies/edit', { movie, categories });
